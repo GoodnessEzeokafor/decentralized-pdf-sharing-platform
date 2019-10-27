@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PDFAE</title>
+</head>
+<body>
+    <h1 id="status">Node Status: offline</h1>
+    <h3>Add File</h3>
+    <div id="addFile">
+    <p>
+        <label for="">File Name:</label>
+        <input type="text" id="name"> <br>    
+    </p>
+    <p>
+        <label for="">File Descripion</label>
+        <textarea name="" id="description" cols="30" rows="10"></textarea>    
+    </p>
+    <p>
+        <label for="">File Upload</label>
+        <input type="file" name="file" id="file">
+    </p>
+    <button class="submit">Submit</button>
+    </div>
+    <script src="https://unpkg.com/ipfs/dist/index.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
