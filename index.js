@@ -21,7 +21,7 @@ contract File=
    put(state{files[index]=stored_file,index_counter=index})
 
 `
-contractAddress ='ct_A17iNgVV1gYP3rmmeKVKk8LmWjmkNiRHrkN1UddDaaRfpsMyy'
+contractAddress ='ct_2fuW7poTmceYrmyasVDCqXmxWDa17vS1wigPcNytFU7ktnmT1B'
 
 var client = null // client defuault null
 var fileListArr = [] // empty arr
