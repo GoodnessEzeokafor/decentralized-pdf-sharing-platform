@@ -80,17 +80,17 @@ $('#addFile').click(async function(event){
   console.log(name,description, file)
   console.log("------------------")
   var fileAdded = await node.add(file)
-  fileAdded.forEach(async (file) => {
-    const new_file = await contractCall('add_file', [name, description, file.hash],0);
-    console.log("File Added To The Contract:",new_file)
-    console.log("New File Name:",new_file.name)
-    console.log("New File Name:",new_file.description)
-    console.log("New File Name:",new_file.hash)
-    
-    
+  const file_hash=  fileAdded.forEach(async (file) => {
     console.log("successfully stored", file.hash)
     return file.hash
   })
+  const new_file = await contractCall('add_file', [name, description, file_hash],0);
+    console.log("File Added To The Contract:",new_file)
+    console.log("New File Name:",new_file.name)
+    console.log("New File Description:",new_file.description)
+    console.log("New File Hash:",new_file.hash)
+    
+    
   // var new_file = await contractCall('add_file', [name, description,"jnkjbkj"],0);
   // console.log("File Hash: ", file_hash)
 
