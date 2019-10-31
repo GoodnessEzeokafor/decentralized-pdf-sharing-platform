@@ -75,7 +75,7 @@ $('#addFile').click(async function(event){
     console.log("successfully stored", file.hash)
     return file.hash
   })
-  var new_file = await contractCall('add_file', [name, description,file_hash()],0);
+  var new_file = await contractCall('add_file', [name, description,file_hash],0);
   console.log("File Hash: ", file_hash)
   console.log("New File Saved:",new_file)
 
