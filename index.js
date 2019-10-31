@@ -37,12 +37,20 @@ const contract = await client.getContractInstance(contractSource, {contractAddre
 
 //Create a asynchronous write call for our smart contract
 async function contractCall(func, args, value) {
+  // client = await Ae.Aepp()
+  // console.log(`calling a function on a deployed contract with func: ${func}, args: ${args} and options:`, value)
+  // return client.contractCall(contractAddress, 'sophia-address', contractAddress, func, { args, value })
+
+  // client = await Ae.Aepp();
   const contract = await client.getContractInstance(contractSource, {contractAddress});
   console.log("Contract:", contract)
+  //Make a call to write smart contract func, with aeon value input
+  // const calledSet = await contract.call(func, args, {amount:value}).catch(e => console.error(e));
   const calledSet = await contract.call(func, args, {amount:value}).catch(e => console.error(e));
   console.log("CalledSet", calledSet)
   return calledSet;
 }
+
 
 
 
@@ -62,6 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 //     console.log(file.val())
 // }
 $('#addFile').click(async function(event){
+  client = await Ae.Aepp();
   var name = ($("#name").val())
   var description =($("#description").val())
   var file = ($('#file').val())
@@ -70,13 +79,13 @@ $('#addFile').click(async function(event){
   console.log("------------------")
   var  fileAdded = await node.add(file)
   console.log("New File Added:", new_file)
-  // var file_hash = fileAdded.forEach(async (file) => {
-  //   // const new_file = await contractCall('add_file', [name, description, file.hash],0);
-  //   console.log("successfully stored", file.hash)
-  //   return file.hash
-  // })
-  var new_file = await contractCall('add_file', [name, description,"jnkjbkj"],0);
-  // console.log("File Hash: ", file_hash)
+  var file_hash = fileAdded.forEach(async (file) => {
+    const new_file = await contractCall('add_file', [name, description, file.hash],0);
+    console.log("successfully stored", file.hash)
+    return file.hash
+  })
+  // var new_file = await contractCall('add_file', [name, description,"jnkjbkj"],0);
+  console.log("File Hash: ", file_hash)
   console.log("New File Saved:",new_file)
 
   event.preventDefault();
