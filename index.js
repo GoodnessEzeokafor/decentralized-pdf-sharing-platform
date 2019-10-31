@@ -70,8 +70,9 @@ $('#addFile').on('click', '.submit',async function(event){
   console.log(name,description, file)
   console.log("------------------")
   const fileAdded = await node.add(file)
-  fileAdded.forEach((file) => {
+  fileAdded.forEach(async (file) => {
     const new_file = await contractCall('add_file', [name, description, file.hash],0);
     console.log("successfully stored", file.hash)
+    console.log("New File Contract",new_file)
   })
 })
