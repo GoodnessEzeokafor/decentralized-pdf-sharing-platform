@@ -1,4 +1,4 @@
-contractSource = `
+var contractSource = `
 contract File=
   record file ={
     id:int,
@@ -21,7 +21,7 @@ contract File=
    put(state{files[index]=stored_file,index_counter=index})
 
 `
-contractAddress ='ct_2fuW7poTmceYrmyasVDCqXmxWDa17vS1wigPcNytFU7ktnmT1B'
+var contractAddress ='ct_2fuW7poTmceYrmyasVDCqXmxWDa17vS1wigPcNytFU7ktnmT1B'
 
 var client = null // client defuault null
 var fileListArr = [] // empty arr
@@ -30,7 +30,8 @@ var fileListLength = 0 // empty product list lenghth
 
 // asychronus read from the blockchain
 async function callStatic(func, args) {
-  const contract = await client.getContractInstance(contractSource, {contractAddress});
+var contractAddress ='ct_2fuW7poTmceYrmyasVDCqXmxWDa17vS1wigPcNytFU7ktnmT1B'
+const contract = await client.getContractInstance(contractSource, {contractAddress});
   const calledGet = await contract.call(func, args, {callStatic: true}).catch(e => console.error(e));
   const decodedGet = await calledGet.decode().catch(e => console.error(e));
   return decodedGet;
