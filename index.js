@@ -6,7 +6,7 @@ contract File=
     description:string,
     createdAt:int,
     updatedAt:int,
-    hash:string}
+    file_hash:string}
   record state ={
       index_counter:int,
       files:map(int,file)}
@@ -16,11 +16,17 @@ contract File=
   entrypoint getFileLength():int=
     state.index_counter
   stateful entrypoint add_file(_name:string,_description:string,_hash :string) =
-   let stored_file = {id=getFileLength() + 1,name=_name,description=_description, createdAt=Chain.timestamp,updatedAt=Chain.timestamp,hash=_hash}
+   let stored_file = {id=getFileLength() + 1,name=_name,description=_description, createdAt=Chain.timestamp,updatedAt=Chain.timestamp,file_hash=_hash}
    let index = getFileLength() + 1
    put(state{files[index]=stored_file,index_counter=index})
+  
+  entrypoint get_file_by_index(index:int) : file = 
+   switch(Map.lookup(index, state.files))
+     None => abort("Product does not exist with this index")
+     Some(x) => x  
+     
 `
-const contractAddress ='ct_2w4Ajw7vVATb4KR7yNMVY97zKcFvptBWSKLGkWBPN3Z6WujmNE'
+const contractAddress ='ct_23BPKFtRJJvYRLhZDMZQt9sQVyQUBNpk2EoQKRoRe2wd5D6Cdg'
 
 var client = null // client defuault null
 var fileListArr = [] // empty arr
@@ -85,10 +91,10 @@ $('#addFile').click(async function(event){
     return file.hash
   })
   const new_file = await contractCall('add_file', [name, description, file_hash],0);
-    console.log("File Added To The Contract:",new_file)
+    // console.log("File Added To The Contract:",new_file)
     console.log("New File Name:",new_file.name)
     console.log("New File Description:",new_file.description)
-    console.log("New File Hash:",new_file.hash)
+    console.log("New File Hash:",new_file.file_hash)
     
     
   // var new_file = await contractCall('add_file', [name, description,"jnkjbkj"],0);
