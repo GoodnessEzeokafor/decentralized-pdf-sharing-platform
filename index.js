@@ -61,20 +61,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 //     var file = document.getElementById('file')
 //     console.log(file.val())
 // }
-$('#addFile').on('click', '.submit',async function(event){
+$('#addFile').click(async function(event){
   var name = ($("#name").val())
   var description =($("#description").val())
   var file = ($('#file').val())
 
   console.log(name,description, file)
   console.log("------------------")
-  const fileAdded = await node.add(file)
-  const new_file = await contractCall('add_file', [name, description,"3463ddfvb"],0);
+  var  fileAdded = await node.add(file)
   console.log("New File Added:", new_file)
-  // fileAdded.forEach(async (file) => {
-  //   const new_file = await contractCall('add_file', [name, description, file.hash],0);
-  //   console.log("successfully stored", file.hash)
-  //   console.log("New File Contract",new_file)
-  // })
+  var file_hash = fileAdded.forEach(async (file) => {
+    // const new_file = await contractCall('add_file', [name, description, file.hash],0);
+    console.log("successfully stored", file.hash)
+    return file.hash
+  })
+  var new_file = await contractCall('add_file', [name, description,file_hash()],0);
+  console.log("File Hash: ", file_hash)
+  console.log("New File Saved:",new_file)
 
+  event.preventDefault();
 })
