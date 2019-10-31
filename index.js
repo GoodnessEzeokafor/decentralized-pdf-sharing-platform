@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 //     var file = document.getElementById('file')
 //     console.log(file.val())
 // }
-window.addEventListener('loadin', async function(){
+window.addEventListener('load', async()=>{
   client = await Ae.Aepp();
 })
 $('#addFile').click(async function(event){
