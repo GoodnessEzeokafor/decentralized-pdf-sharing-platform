@@ -20,7 +20,7 @@ contract File=
    let index = getFileLength() + 1
    put(state{files[index]=stored_file,index_counter=index})
 `
-const contractAddress ='ct_2eAZSq8YPJNM7RWUsR6LZMZ4pT5jNoCEGizgAwGiDy3woa8vjr'
+const contractAddress ='ct_2w4Ajw7vVATb4KR7yNMVY97zKcFvptBWSKLGkWBPN3Z6WujmNE'
 
 var client = null // client defuault null
 var fileListArr = [] // empty arr
