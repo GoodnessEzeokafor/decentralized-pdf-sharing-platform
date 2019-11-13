@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const node = await IpfsHttpClient({
       host: 'ipfs.infura.io',
       port: 5001,
-      protocol: 'http',
+      protocol: 'https',
       // headers: {
       //   authorization: 'Bearer ' + TOKEN
       // }
