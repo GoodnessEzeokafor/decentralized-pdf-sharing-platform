@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PDFAE</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1 id="status">Node Status: offline</h1>
@@ -24,8 +27,12 @@
     </p>
     <button id="addFile" class="submit">Submit</button>
     </div>
+
+    <div id="getFile">
+    </div>      
     <script src="js/jquery.min.js"></script>
-    <script src="https://unpkg.com/ipfs/dist/index.min.js"></script>
+    <!-- <script src="https://unpkg.com/ipfs/dist/index.min.js"></script> -->
+    <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
     <script src="https://unpkg.com/@aeternity/aepp-sdk/dist/aepp-sdk.browser-script.js"></script>
     <script src="index.js"></script>
 </body>

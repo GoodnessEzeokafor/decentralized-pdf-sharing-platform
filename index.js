@@ -58,14 +58,30 @@ async function contractCall(func, args, value) {
 }
 
 
-
+// const ipfs = ipfsClient({
+//   host: 'localhost',
+//   port: 5001,
+//   protocol: 'http',
+//   headers: {
+//     authorization: 'Bearer ' + TOKEN
+//   }
+// })
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const node = await Ipfs.create({ repo: 'ipfs-' + Math.random() })
+    // const node = await Ipfs.create({ repo: 'ipfs-' + Math.random() })
+  const node = await IpfsHttpClient({
+      host: 'ipfs.infura.io',
+      port: 5001,
+      protocol: 'http',
+      // headers: {
+      //   authorization: 'Bearer ' + TOKEN
+      // }
+  })
+  console.log(node)
     window.node = node
-    const status = node.isOnline() ? 'online' : 'offline'
-    console.log(`Node status: ${status}`)
-    document.getElementById('status').innerHTML = `Node status: ${status}`
+    // const status = node.isOnline() ? 'online' : 'offline'
+    // console.log(`Node status: ${status}`)
+    // document.getElementById('status').innerHTML = `Node status: ${status}`
     // You can write more code here to use it. Use methods like
     // node.add, node.get. See the API docs here:
     // https://github.com/ipfs/interface-ipfs-core
@@ -77,6 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // }
 window.addEventListener('load', async()=>{
   client = await Ae.Aepp();
+  
 })
 $('#addFile').click(async function(event){
   var name = ($("#name").val())
@@ -103,3 +120,11 @@ $('#addFile').click(async function(event){
 
   event.preventDefault();
 })
+
+
+ 
+// <script src="https://unpkg.com/ipfs-http-client@9.0.0/dist/index.js"
+// integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
+// crossorigin="anonymous"></script>
+{/* <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script> */}
+// const ipfs = ipfsClient('localhost', '5001')
