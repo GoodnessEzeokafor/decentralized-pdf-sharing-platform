@@ -98,13 +98,17 @@ window.addEventListener('load', async()=>{
 $('#addFile').click(async function(event){
   var name = ($("#name").val())
   var description =($("#description").val())
-  var file = ($('#file').val())
+  var new_file = ($('#file').val())
 
-  console.log(name,description, file)
+  let reader = new window.FileReader()
+  let file = new Blob([new_file], {type: 'application/pdf'});
+  reader.readAsArrayBuffer(file)
+  const buffer = await Buffer.from(reader.result);
+  console.log(name,description, new_file)
   console.log("------------------")
   // var fileAdded = await node.add(file)
   
-  var fileAdded = await node.addFromFs(file)
+  var fileAdded = await node.add(buffer)
   fileAdded.forEach(async (file) => {
     console.log("successfully stored", file.hash)
     const new_file = await contractCall('add_file', [name, description, file.hash],0);
