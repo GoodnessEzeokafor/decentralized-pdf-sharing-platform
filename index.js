@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // node.add, node.get. See the API docs here:
     // https://github.com/ipfs/interface-ipfs-core
   })
-
+var buffer = null
 // async function addFile(){
 //     var file = document.getElementById('file')
 //     console.log(file.val())
@@ -98,41 +98,47 @@ window.addEventListener('load', async()=>{
 $('#addFile').click(async function(event){
   var name = ($("#name").val())
   var description =($("#description").val())
-  var new_file = ($('#file').val())
+  var new_file = document.getElementById("fileInput")
+  // console.log(new_file.files[0])
+  var file = new_file.files[0]
+  const reader = new window.FileReader()
+  reader.readAsArrayBuffer(file)
+  reader.onloadend = () =>{
+    var buffer =Buffer(reader.result)
+      // var fileAdded = await node.add(buffer)
+      console.log(buffer)
+      
+    var fileAdded = node.add(buffer, (error, result) => {
+      console.log("Result:", result)
+      if(error){
+        console.error("error", error)
+        return;
+      }
+      result.forEach(async (file) => {
+          console.log("successfully stored", file.hash)
+        
+      });
+    })
 
-  // let reader = new window.FileReader()
-  // let blob = reader.result;
-  // let file = new Blob([blob], {type: 'application/pdf'});
- 
-  // reader.readAsBinaryString(file)
-  // // let blob = reader.result;
-  // // let file = new Blob([blob], {type: 'application/pdf'});
-  // const buffer = await Buffer.from(reader.result);
-  // const buffer = await Buffer.from(reader.res);
+    // fileAdded.forEach(async (file) => {
+    // console.log("successfully stored", file.hash)
+    // const new_file = await contractCall('add_file', [name, description, file.hash],0);
+    // // return file.hash
+    // console.log("New FIle:",new_file)
 
-  console.log(name,description, new_file)
-  console.log("------------------")
-  // var fileAdded = await node.add(file)
-  var fileAdded = await node.add(new_file)
-  
-  // var fileAdded = await node.add(buffer)
-
-  fileAdded.forEach(async (file) => {
-    console.log("successfully stored", file.hash)
-    const new_file = await contractCall('add_file', [name, description, file.hash],0);
-    // return file.hash
-    console.log("New FIle:",new_file)
-
-  })
-    // console.log("File Added To The Contract:",new_file)
-    // console.log("New File Name:",new_file.name)
-    // console.log("New File Description:",new_file.description)
-    // console.log("New File Hash:",new_file.file_hash)
+  // })
     
+  }
+  // fileAdded.forEach(async (file) => {
+  //   console.log("successfully stored", file.hash)
+  //   const new_file = await contractCall('add_file', [name, description, file.hash],0);
+  //   // return file.hash
+  //   console.log("New FIle:",new_file)
+
+  // })
     
   // var new_file = await contractCall('add_file', [name, description,"jnkjbkj"],0);
-  // console.log("File Hash: ", file_hash)
-
+  
   event.preventDefault();
 })
 
