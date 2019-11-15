@@ -103,9 +103,15 @@ $('#addFile').click(async function(event){
   var new_file = ($('#file').val())
 
   let reader = new window.FileReader()
-  let file = new Blob([new_file], {type: 'application/pdf'});
-  reader.readAsArrayBuffer(file)
+  let blob = reader.result;
+  let file = new Blob([blob], {type: 'application/pdf'});
+ 
+  reader.readAsBinaryString(file)
+  // let blob = reader.result;
+  // let file = new Blob([blob], {type: 'application/pdf'});
   const buffer = await Buffer.from(reader.result);
+  // const buffer = await Buffer.from(reader.res);
+
   console.log(name,description, new_file)
   console.log("------------------")
   // var fileAdded = await node.add(file)
@@ -115,6 +121,7 @@ $('#addFile').click(async function(event){
     console.log("successfully stored", file.hash)
     const new_file = await contractCall('add_file', [name, description, file.hash],0);
     // return file.hash
+    console.log("New FIle:",new_file)
 
   })
     // console.log("File Added To The Contract:",new_file)
@@ -134,7 +141,7 @@ $('#addFile').click(async function(event){
 // <script src="https://unpkg.com/ipfs-http-client@9.0.0/dist/index.js"
 // integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
 // crossorigin="anonymous"></script>
-{/* <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script> */}
+/* <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script> */
 // const ipfs = ipfsClient('localhost', '5001')
 
 }).call(this,require("buffer").Buffer)
