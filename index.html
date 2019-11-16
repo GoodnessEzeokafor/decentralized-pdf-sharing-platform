@@ -86,13 +86,17 @@
                     {{name}}
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
+                    <h5 class="card-title text-bold">File Description</h5>
                     <p class="card-text">
                         {{description}}
                         <br>
-                        <span class="text-bold">Uploaded By {{owner}}</span>
+                        <span class="text-bold">Uploaded By: {{owner}}</span>
                         <br>
-                        <span class="text-bold">Uploaded on {createdAt{}}</span>
+                        <span class="text-bold">Uploaded on {{createdAt}}</span>
+                        <br>
+                        <span class="text-bold"> Copy this link : https://ipfs.io/ipfs/{{file_hash}} to view the file</span>
+                        <br>
+                        <a href="ipfs.io/ipfs/{{file_hash}}">link</a>
                     </p>
                     <a href="ipfs.io/ipfs/{{file_hash}}"  class="btn btn-primary">View File</a>
                 </div>

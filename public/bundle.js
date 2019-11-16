@@ -172,6 +172,8 @@ $('#addFile').click(async function(event){
   var get_file = ($("#getFile"));
   console.log(get_file)
   get_file.show();
+
+  renderFileList();  
   event.preventDefault();
 })
 
