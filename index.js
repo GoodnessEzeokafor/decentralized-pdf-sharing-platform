@@ -164,14 +164,15 @@ $('#addFile').click(async function(event){
       clear_file.value = ""
  
 
+
   var form_add = ($("#display_add_form"));
   console.log(form_add)
   form_add.hide();
+  renderFileList(); 
   var get_file = ($("#getFile"));
   console.log(get_file)
   get_file.show();
-
-  renderFileList();  
+ 
   event.preventDefault();
 })
 
