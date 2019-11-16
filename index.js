@@ -154,17 +154,18 @@ $('#addFile').click(async function(event){
   
   }
   
-  var clear_name = document.getElementById("#name")
+  var clear_name = document.getElementById("name")
       clear_name.value = ""
  
-  var clear_description = document.getElementById("#description")
+  var clear_description = document.getElementById("description")
       clear_description.value = ""
 
-  var clear_file = document.getElementById("#fileInput")
+  var clear_file = document.getElementById("fileInput")
       clear_file.value = ""
  
 
   var form_add = ($("#display_add_form"));
+  console.log(form_add)
   form_add.hide();
   var get_file = ($("#getFile"));
   console.log(get_file)
