@@ -116,28 +116,13 @@ $('#addFile').click(async function(event){
       }
       result.forEach(async (file) => {
           console.log("successfully stored", file.hash)
-        
+          const new_file = await contractCall('add_file', [name, description, file.hash],0);
+          console.log(new_file)
       });
     })
-
-    // fileAdded.forEach(async (file) => {
-    // console.log("successfully stored", file.hash)
-    // const new_file = await contractCall('add_file', [name, description, file.hash],0);
-    // // return file.hash
-    // console.log("New FIle:",new_file)
-
-  // })
-    
+  
   }
-  // fileAdded.forEach(async (file) => {
-  //   console.log("successfully stored", file.hash)
-  //   const new_file = await contractCall('add_file', [name, description, file.hash],0);
-  //   // return file.hash
-  //   console.log("New FIle:",new_file)
-
-  // })
     
-  // var new_file = await contractCall('add_file', [name, description,"jnkjbkj"],0);
   
   event.preventDefault();
 })
