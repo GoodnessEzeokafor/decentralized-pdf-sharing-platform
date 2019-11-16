@@ -167,6 +167,7 @@ $('#addFile').click(async function(event){
   var form_add = ($("#display_add_form"));
   form_add.hide();
   var get_file = ($("#getFile"));
+  console.log(get_file)
   get_file.show();
   event.preventDefault();
 })
