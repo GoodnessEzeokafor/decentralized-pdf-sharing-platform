@@ -28,7 +28,7 @@ contract File=
      None => abort("Product does not exist with this index")
      Some(x) => x  
 `
-const contractAddress ='ct_2pSAFeiv6j3qJEMQyQ8qxnfJEnGn12eE336eS12RkNKKD4jZ6t'
+const contractAddress ='ct_2Z62rihrZ881vcFEbi9P3BXeLccawJonUyamstBZBFWteC58bA'
 
 var client = null // client defuault null
 var fileListArr = [] // empty arr
