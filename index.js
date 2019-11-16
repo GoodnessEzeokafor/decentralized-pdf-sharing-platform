@@ -58,14 +58,16 @@ async function contractCall(func, args, value) {
 }
 
 
-// const ipfs = ipfsClient({
-//   host: 'localhost',
-//   port: 5001,
-//   protocol: 'http',
-//   headers: {
-//     authorization: 'Bearer ' + TOKEN
-//   }
-// })
+// mustche
+
+function renderFileList(){
+  let template = $('#template').html();
+  Mustache.parse(template);
+  var rendered = Mustache.render(template, {fileListArr});
+  $("#getFile").html(rendered);
+  console.log("Mustashe Template Display")
+}
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     // const node = await Ipfs.create({ repo: 'ipfs-' + Math.random() })
