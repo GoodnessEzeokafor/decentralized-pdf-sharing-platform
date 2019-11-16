@@ -9,11 +9,18 @@ The InterPlanetary File System (IPFS) is a protocol and peer-to-peer network for
 * Go to this link http://base.aepps.com/
 * Inspect the Page and reload 
 * Paste this link https://goodnessezeokafor.github.io/decentralized-pdf-sharing-platform/
+* After Uploading a file wait for the base aepp to bring up the transaction notification
+    * ![Screenshots!](/img/ipfs_3.png "Screenshots")
+* Please refresh the base aepp by clicking the top corner to see the uploaded file
+* To View the file you uploaded pls add your file hash gotten from the blockchain and add it to this link https://ipfs.io/ipfs/hash
+* Hash starts with Qm, note u can see it at the console
+    * ![Screenshots!](/img/ipfs_6.png "Screenshots")
 
 
-![Screenshots!](/img/shekinah-dacade-1.png "Screenshots")
-![Screenshots!](/img/shekinah-dacade-2.png "Screenshots")
-![Screenshots!](/img/shekinah-dacade-4.png "Screenshots")
-![Screenshots!](/img/shekinah.png "Screenshots")
+![Screenshots!](/img/ipfs_1.png "Screenshots")
+![Screenshots!](/img/ipfs2.png "Screenshots")
+![Screenshots!](/img/ipfs_3.png "Screenshots")
+![Screenshots!](/img/ipfs_4.png "Screenshots")
+![Screenshots!](/img/ipfs_5.png "Screenshots")
 
 
