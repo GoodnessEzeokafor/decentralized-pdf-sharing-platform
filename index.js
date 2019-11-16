@@ -69,6 +69,32 @@ function renderFileList(){
 }
 
 
+window.addEventListener('load', async() => {
+  $("#loader").show();
+
+  client = await Ae.Aepp();
+
+  fileListLength = await callStatic('getFileLength',[]);
+  
+  console.log('Files Length: ', fileListLength);
+
+  for(let i = 1; i < fileListLength + 1; i++){
+    const getFileList = await callStatic('get_file_by_index', [i]);
+    fileListArr.push({
+      index_counter:i,
+      name:getFileList.name,
+      id:getFileList.id,
+      description:getFileList.price,
+      createdAt:getFileList.images,
+      owner:getFileList.owner,
+      updatedAt:getFileList.updatedAt,
+      file_hash:getFileList.file_hash
+    })
+  }
+  renderFileList();  
+  $("#loader").hide();
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
     // const node = await Ipfs.create({ repo: 'ipfs-' + Math.random() })
   const node = await IpfsHttpClient({

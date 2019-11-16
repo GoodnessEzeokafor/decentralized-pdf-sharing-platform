@@ -57,6 +57,9 @@
                                       
                         </div>
                         <!-- ENF GET FILE -->
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block">Add File</button>
+                        </div>
                       </div>  
                   </div>
                   <footer>
@@ -70,18 +73,18 @@
         {{#fileListArr}}
         <div class="card mb-4">
                 <div class="card-header">
-                    File Name
+                    {{name}}
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">
-                        Description Of The File
+                        {{description}}
                         <br>
-                        <span class="text-bold">Uploaded By Owner</span>
+                        <span class="text-bold">Uploaded By {{owner}}</span>
                         <br>
                         <span class="text-bold">Uploaded on Date</span>
                     </p>
-                    <a href="#" class="btn btn-primary">View File</a>
+                    <a href="ipfs.io/ipfs/{{file_hash}}" target="_blank" class="btn btn-primary">View File</a>
                 </div>
             </div>
         {{/fileListArr }}
