@@ -24,3 +24,8 @@ The InterPlanetary File System (IPFS) is a protocol and peer-to-peer network for
 ![Screenshots!](/img/ipfs_5.png "Screenshots")
 
 
+
+#### To Contribute
+* knowledge of Browsify is required
+* Fork and create a pull request, it takes 24hrs for yout request to be reviewed
+* Thank You
