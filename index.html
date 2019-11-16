@@ -27,8 +27,20 @@
               <div class="container mt-5">
                   <div class="row">
                       <div class="col-md-8">
+                        <!-- add file -->
+                        <div id="loader" >
+                                <svg width="48" height="48" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                  <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#76f19a">
+                                    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+                                  </path>
+                                </svg>
+                                </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" id="add_file_btn">Add File</button>
+                        </div>
+                        <!-- end add file -->
                         <!-- START FORM -->
-                        <div class="Fileform" style="display: none;">
+                        <div class="Fileform" style="display: none;" id="display_add_form">
                                 <div class="form-group">
                                     <label for="name">Name Of File</label>
                                     <input type="text" class="form-control" id="name"  placeholder="Enter Name Of File">
@@ -57,9 +69,7 @@
                                       
                         </div>
                         <!-- ENF GET FILE -->
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-block">Add File</button>
-                        </div>
+                        
                       </div>  
                   </div>
                   <footer>
@@ -82,9 +92,9 @@
                         <br>
                         <span class="text-bold">Uploaded By {{owner}}</span>
                         <br>
-                        <span class="text-bold">Uploaded on Date</span>
+                        <span class="text-bold">Uploaded on {createdAt{}}</span>
                     </p>
-                    <a href="ipfs.io/ipfs/{{file_hash}}" target="_blank" class="btn btn-primary">View File</a>
+                    <a href="ipfs.io/ipfs/{{file_hash}}"  class="btn btn-primary">View File</a>
                 </div>
             </div>
         {{/fileListArr }}

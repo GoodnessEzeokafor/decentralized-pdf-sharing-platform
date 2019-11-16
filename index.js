@@ -6,6 +6,7 @@ contract File=
     description:string,
     createdAt:int,
     updatedAt:int,
+    author:address,
     file_hash:string}
   record state ={
       index_counter:int,
@@ -16,7 +17,7 @@ contract File=
   entrypoint getFileLength():int=
     state.index_counter
   stateful entrypoint add_file(_name:string,_description:string,_hash :string) =
-   let stored_file = {id=getFileLength() + 1,name=_name,description=_description, createdAt=Chain.timestamp,updatedAt=Chain.timestamp,file_hash=_hash}
+   let stored_file = {id=getFileLength() + 1,name=_name,description=_description, createdAt=Chain.timestamp,updatedAt=Chain.timestamp,author = Call.caller,file_hash=_hash}
    let index = getFileLength() + 1
    put(state{files[index]=stored_file,index_counter=index})
   
@@ -24,9 +25,8 @@ contract File=
    switch(Map.lookup(index, state.files))
      None => abort("Product does not exist with this index")
      Some(x) => x  
-     
 `
-const contractAddress ='ct_23BPKFtRJJvYRLhZDMZQt9sQVyQUBNpk2EoQKRoRe2wd5D6Cdg'
+const contractAddress ='ct_2pSAFeiv6j3qJEMQyQ8qxnfJEnGn12eE336eS12RkNKKD4jZ6t'
 
 var client = null // client defuault null
 var fileListArr = [] // empty arr
@@ -74,6 +74,9 @@ window.addEventListener('load', async() => {
 
   client = await Ae.Aepp();
 
+
+
+
   fileListLength = await callStatic('getFileLength',[]);
   
   console.log('Files Length: ', fileListLength);
@@ -84,9 +87,9 @@ window.addEventListener('load', async() => {
       index_counter:i,
       name:getFileList.name,
       id:getFileList.id,
-      description:getFileList.price,
-      createdAt:getFileList.images,
-      owner:getFileList.owner,
+      description:getFileList.description,
+      createdAt:new Date(getFileList.createdAt),
+      owner:getFileList.author,
       updatedAt:getFileList.updatedAt,
       file_hash:getFileList.file_hash
     })
@@ -150,15 +153,39 @@ $('#addFile').click(async function(event){
     })
   
   }
-    
   
+  var clear_name = document.getElementById("#name")
+      clear_name.value = ""
+ 
+  var clear_description = document.getElementById("#description")
+      clear_description.value = ""
+
+  var clear_file = document.getElementById("#fileInput")
+      clear_file.value = ""
+ 
+
+  var form_add = ($("#display_add_form"));
+  form_add.hide();
+  var get_file = ($("#getFile"));
+  get_file.show();
   event.preventDefault();
 })
 
 
  
-// <script src="https://unpkg.com/ipfs-http-client@9.0.0/dist/index.js"
-// integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
-// crossorigin="anonymous"></script>
-/* <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script> */
-// const ipfs = ipfsClient('localhost', '5001')
+// Display add form
+$("#add_file_btn").click(function(event){
+  console.log("Show Form")
+  var form_add = ($("#display_add_form"));
+  var get_file = ($("#getFile"));
+  var loader = ($("#loader"));
+  var btn_add = ($("#add_file_btn"));
+  
+  console.log(form_add)
+  form_add.show();
+  loader.hide();
+  get_file.hide();
+  btn_add.hide();
+  event.preventDefault();
+})
+
